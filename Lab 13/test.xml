@@ -1,0 +1,7 @@
+<suite name="Test Suite" listeners="CustomTestListener, CustomSuiteListener, CustomExecutionListener, CustomInvocationListener">
+    <test name="Sample Test">
+        <classes>
+            <class name="com.example.tests.TestClass"/>
+        </classes>
+    </test>
+</suite>
