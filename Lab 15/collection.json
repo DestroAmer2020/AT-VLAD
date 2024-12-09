@@ -1,0 +1,85 @@
+{
+  "info": {
+    "name": "Trello API Automation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Board",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://api.trello.com/1/boards/?name=TeststBoard&key={{apiKey}}&token={{apiToken}}",
+          "host": ["api", "trello", "com"],
+          "path": ["1", "boards", ""],
+          "query": [
+            { "key": "name", "value": "{{boardName}}" },
+            { "key": "key", "value": "{{apiKey}}" },
+            { "key": "token", "value": "{{apiToken}}" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Card",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://api.trello.com/1/cards/?idList=67560e2c675a757e07a0d64f&name=Card&key={{apiKey}}&token={{apiToken}}",
+          "host": ["api", "trello", "com"],
+          "path": ["1", "cards", ""],
+          "query": [
+            { "key": "idList", "value": "67560e2c675a757e07a0d64f" },
+            { "key": "name", "value": "Card" },
+            { "key": "key", "value": "{{apiKey}}" },
+            { "key": "token", "value": "{{apiToken}}" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Card Description",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "https://api.trello.com/1/cards/67560e3b69ff2269387289d1?desc=newDesc&key={{apiKey}}&token={{apiToken}}",
+          "host": ["api", "trello", "com"],
+          "path": ["1", "cards", "67560e3b69ff2269387289d1"],
+          "query": [
+            { "key": "desc", "value": "newDesc" },
+            { "key": "key", "value": "{{apiKey}}" },
+            { "key": "token", "value": "{{apiToken}}" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Card",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://api.trello.com/1/cards/67560e3b69ff2269387289d1?key={{apiKey}}&token={{apiToken}}",
+          "host": ["api", "trello", "com"],
+          "path": ["1", "cards", "67560e3b69ff2269387289d1"],
+          "query": [
+            { "key": "key", "value": "{{apiKey}}" },
+            { "key": "token", "value": "{{apiToken}}" }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    { "key": "apiKey", "value": "key_here" },
+    { "key": "apiToken", "value": "token_here" }
+  ]
+}
