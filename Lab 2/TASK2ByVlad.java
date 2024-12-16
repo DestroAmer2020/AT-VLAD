@@ -1,19 +1,32 @@
-package com.example.EnumExampleProject;
+package task_2;
+/*
+V 13: Int Arrays
+Objective: To understand and use arrays with the int type in Java.
+Instructions:
+Declare and initialize an array of int.
+Use a for loop to print the elements of the array to the console.
+Use a for loop to find the number of odd in the array.
+*/
 
-public class EnumExample {
-
-    public enum Season {
-        WINTER, SPRING, SUMMER, FALL
-    }
-
+public class TASK2ByVlad {
     public static void main(String[] args) {
-        Season season = Season.SUMMER;
 
-        switch (season) {
-            case WINTER -> System.out.println("It's cold outside!");
-            case SPRING -> System.out.println("Flowers are blooming.");
-            case SUMMER -> System.out.println("Time for the beach!");
-            case FALL -> System.out.println("Leaves are falling.");
+        int[] numbers = {2, 5, 8, 11, 14, 17, 20};
+
+        System.out.println("Array elements:");
+        for (int number : numbers) {
+            System.out.print(number + " ");
         }
+        System.out.println();
+
+        int oddCount = 0;
+        for (int number : numbers) {
+            if (number % 2 != 0) {
+                oddCount++;
+            }
+        }
+
+        System.out.println("Number of odd numbers in the array: " + oddCount);
     }
 }
+
