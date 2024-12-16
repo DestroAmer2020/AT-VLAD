@@ -1,81 +1,76 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+package task_3;
+/*
+Array Rotation: Write a Java program that takes an array of integers and rotates it by a given number of positions.
+Your program should prompt the user to enter the array size and the elements of the array, and then the number 
+of positions to rotate the array. Finally, your program should output the rotated array.
+Make LinkedList from the result array and perform the following operations: 
+a) Add an element to the beginning of the list; b) Add an element to the end of the list;
+c) Remove the first element from the list; d) Remove the last element from the list;
+e) Print the elements of the list in reverse order;
+Make up the situation for ArithmeticException. Catch it and display the explanation for your custom case.
+*/
 
-public class ArrayReverse {
+import java.util.*;
 
+public class TASK3BYVLAD {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the size of the array: ");
         int size = scanner.nextInt();
         int[] array = new int[size];
-
-        System.out.println("Enter " + size + " integer elements:");
+        System.out.println("Enter the elements of the array:");
         for (int i = 0; i < size; i++) {
             array[i] = scanner.nextInt();
         }
 
-        int[] reversedArray = new int[size];
-        for (int i = 0; i < size; i++) {
-            reversedArray[i] = array[size - i - 1];
+        System.out.print("Enter the number of positions to rotate the array: ");
+        int positions = scanner.nextInt();
+
+        int[] rotatedArray = rotateArray(array, positions);
+
+        System.out.println("Rotated Array: " + Arrays.toString(rotatedArray));
+
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for (int num : rotatedArray) {
+            linkedList.add(num);
         }
 
-        System.out.print("Reversed array: ");
-        for (int num : reversedArray) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
+        linkedList.addFirst(99);
+        linkedList.addLast(77);
+        System.out.println("List after adding elements: " + linkedList);
 
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int num : reversedArray) {
-            list.add(num);
-        }
+        linkedList.removeFirst();
+        linkedList.removeLast();
+        System.out.println("List after removing elements: " + linkedList);
 
-        System.out.print("Enter a number to add to the end of the list: ");
-        int addElement = scanner.nextInt();
-        list.add(addElement);
-
-        System.out.print("Enter the index of the element to remove: ");
-        try {
-            int removeIndex = scanner.nextInt();
-            list.remove(removeIndex);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid index! Unable to remove element.");
-        }
-
-        System.out.print("Enter the index of the element to replace: ");
-        int replaceIndex = scanner.nextInt();
-        System.out.print("Enter the new value: ");
-        int newValue = scanner.nextInt();
-
-        try {
-            list.set(replaceIndex, newValue);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid index! Unable to replace element.");
-        }
-
-        Collections.sort(list);
-        System.out.println("Sorted list in ascending order: " + list);
-
-        System.out.println("Final list elements: ");
-        for (int element : list) {
-            System.out.print(element + " ");
+        // Print elements in reverse order
+        System.out.print("List in reverse order: ");
+        ListIterator<Integer> iterator = linkedList.listIterator(linkedList.size());
+        while (iterator.hasPrevious()) {
+            System.out.print(iterator.previous() + " ");
         }
         System.out.println();
 
-        System.out.print("Enter a divisor to divide the first element of the list by: ");
         try {
+            System.out.print("Enter a number to divide by (for ArithmeticException): ");
             int divisor = scanner.nextInt();
-            int result = list.get(0) / divisor;
-            System.out.println("Result of division: " + result);
+            int result = 100 / divisor;
+            System.out.println("Result: " + result);
         } catch (ArithmeticException e) {
-            System.out.println("ArithmeticException: Cannot divide by zero. Please enter a non-zero divisor.");
-        } catch (InputMismatchException e) {
-            System.out.println("InputMismatchException: Please enter a valid integer.");
+            System.out.println("ArithmeticException: Division by zero is not allowed. Please provide a non-zero divisor.");
         }
 
         scanner.close();
+    }
+
+    public static int[] rotateArray(int[] array, int positions) {
+        int size = array.length;
+        positions %= size;
+        int[] rotated = new int[size];
+        for (int i = 0; i < size; i++) {
+            rotated[i] = array[(i + positions) % size];
+        }
+        return rotated;
     }
 }
