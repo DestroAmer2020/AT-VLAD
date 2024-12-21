@@ -1,5 +1,0 @@
-username,password
-validUser,validPass
-invalidUser,validPass
-validUser,invalidPass
-,                 # Порожні логін і пароль
