@@ -1,0 +1,4 @@
+APITest.class
+pageTest\ButtonsPageTest.class
+driverTest\DriverPoolTest.class
+CRUDTest.class
